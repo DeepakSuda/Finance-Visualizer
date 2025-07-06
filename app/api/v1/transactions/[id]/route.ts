@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Transaction from '@/lib/models/Transaction';
 
-// GET /api/transactions/[id] - Get single transaction
+// GET /api/v1/transactions/[id] - Get single transaction
 export async function GET(
     request: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -30,7 +30,7 @@ export async function GET(
     }
 }
 
-// PUT /api/transactions/[id] - Update transaction
+// PUT /api/v1/transactions/[id] - Update transaction
 export async function PUT(
     request: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -79,7 +79,7 @@ export async function PUT(
     }
 }
 
-// DELETE /api/transactions/[id] - Delete transaction
+// DELETE /api/v1/transactions/[id] - Delete transaction
 export async function DELETE(
     request: NextRequest,
     { params }: { params: Promise<{ id: string }> }

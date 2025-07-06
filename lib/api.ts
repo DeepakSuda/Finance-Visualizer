@@ -12,7 +12,7 @@ export interface Transaction {
 
 // Fetch all transactions
 export async function fetchTransactions(): Promise<Transaction[]> {
-    const response = await fetch('/api/transactions');
+    const response = await fetch('/api/v1/transactions');
     if (!response.ok) {
         throw new Error('Failed to fetch transactions');
     }
@@ -21,7 +21,7 @@ export async function fetchTransactions(): Promise<Transaction[]> {
 
 // Create new transaction
 export async function createTransaction(transaction: Omit<Transaction, '_id' | 'createdAt' | 'updatedAt'>): Promise<Transaction> {
-    const response = await fetch('/api/transactions', {
+    const response = await fetch('/api/v1/transactions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export async function createTransaction(transaction: Omit<Transaction, '_id' | '
 
 // Update transaction
 export async function updateTransaction(id: string, transaction: Omit<Transaction, '_id' | 'createdAt' | 'updatedAt'>): Promise<Transaction> {
-    const response = await fetch(`/api/transactions/${id}`, {
+    const response = await fetch(`/api/v1/transactions/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export async function updateTransaction(id: string, transaction: Omit<Transactio
 
 // Delete transaction
 export async function deleteTransaction(id: string): Promise<void> {
-    const response = await fetch(`/api/transactions/${id}`, {
+    const response = await fetch(`/api/v1/transactions/${id}`, {
         method: 'DELETE',
     });
 

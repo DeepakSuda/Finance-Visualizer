@@ -93,11 +93,11 @@ The application uses the following MongoDB collections:
 
 ## API Endpoints
 
-- `GET /api/transactions` - Fetch all transactions
-- `POST /api/transactions` - Create new transaction
-- `GET /api/transactions/[id]` - Get single transaction
-- `PUT /api/transactions/[id]` - Update transaction
-- `DELETE /api/transactions/[id]` - Delete transaction
+- `GET /api/v1/transactions` - Fetch all transactions
+- `POST /api/v1/transactions` - Create new transaction
+- `GET /api/v1/transactions/[id]` - Get single transaction
+- `PUT /api/v1/transactions/[id]` - Update transaction
+- `DELETE /api/v1/transactions/[id]` - Delete transaction
 
 ## Troubleshooting
 

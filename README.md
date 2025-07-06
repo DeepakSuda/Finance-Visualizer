@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finance Visualizer
+
+> **Note:** This is an assignment project for Stage One.
+
+Finance Visualizer is a modern web app to help you track your income and expenses, analyze your spending, and visualize your financial health. Built with Next.js, TypeScript, MongoDB, and Tailwind CSS, it's designed to be fast, intuitive, and easy to use.
+
+## Features
+
+- Add, edit, and delete transactions
+- Categorize your spending and income
+- See monthly net amounts (income minus expenses) in a beautiful bar chart
+- Responsive design for desktop and mobile
+- Data is stored in MongoDB for persistence
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18 or newer
+- MongoDB (local or Atlas)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Setup
+
+1. **Clone this repo:**
+   ```bash
+   git clone https://github.com/yourusername/finance-visualizer.git
+   cd finance-visualizer
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Configure your database:**
+   - Create a `.env.local` file in the root folder:
+     ```env
+     MONGODB_URI=mongodb://localhost:27017/finance-visualizer
+     # Or use your MongoDB Atlas connection string
+     ```
+4. **Start the app:**
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+finance-visualizer/
+├── app/            # Pages and API routes
+├── components/     # UI components
+├── lib/            # Database and utility code
+├── public/         # Static files
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Endpoints
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `GET /api/v1/transactions` — List all transactions
+- `POST /api/v1/transactions` — Add a new transaction
+- `PUT /api/v1/transactions/[id]` — Update a transaction
+- `DELETE /api/v1/transactions/[id]` — Delete a transaction
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contributing
 
-## Learn More
+If you find a bug or have a feature idea, feel free to open an issue or submit a pull request. All contributions are welcome!
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thanks for checking out Finance Visualizer! If you have any questions or feedback, please reach out or open an issue.

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Transaction from '@/lib/models/Transaction';
 
-// GET /api/transactions - Fetch all transactions
+// GET /api/v1/transactions - Fetch all transactions
 export async function GET() {
     try {
         await connectDB();
@@ -21,7 +21,7 @@ export async function GET() {
     }
 }
 
-// POST /api/transactions - Create new transaction
+// POST /api/v1/transactions - Create new transaction
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
