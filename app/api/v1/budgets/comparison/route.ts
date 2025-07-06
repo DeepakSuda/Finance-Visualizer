@@ -45,7 +45,8 @@ export async function GET(request: NextRequest) {
         }));
 
         const totalBudget = budgets.reduce((sum: number, budget) => sum + budget.amount, 0);
-        const totalSpent = Object.values(categorySpending).reduce((sum: number, amount: number) => sum + amount, 0) as number;
+        const spendingValues = Object.values(categorySpending) as number[];
+        const totalSpent = spendingValues.reduce((sum: number, amount: number) => sum + amount, 0);
 
         const insights = {
             totalBudget,
