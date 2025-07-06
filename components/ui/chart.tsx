@@ -111,16 +111,16 @@ interface ChartTooltipContentProps {
     name?: string
     dataKey?: string
     color?: string
-    payload?: any
+    payload?: Record<string, unknown>
   }>
   className?: string
   indicator?: "line" | "dot" | "dashed"
   hideLabel?: boolean
   hideIndicator?: boolean
   label?: string
-  labelFormatter?: (value: any, payload: any[]) => React.ReactNode
+  labelFormatter?: (value: React.ReactNode, payload: Array<{ value?: number; name?: string; dataKey?: string; color?: string; payload?: Record<string, unknown> }>) => React.ReactNode
   labelClassName?: string
-  formatter?: (value: number, name: string, props: any, index: number, payload: any) => React.ReactNode
+  formatter?: (value: number, name: string, props: { value?: number; name?: string; dataKey?: string; color?: string; payload?: Record<string, unknown> }, index: number, payload: Record<string, unknown>) => React.ReactNode
   color?: string
   nameKey?: string
   labelKey?: string
@@ -197,7 +197,7 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
-          const indicatorColor = color || item.payload.fill || item.color
+          const indicatorColor = color || (item.payload as Record<string, unknown>)?.fill || item.color
 
           return (
             <div
@@ -208,7 +208,7 @@ function ChartTooltipContent({
               )}
             >
               {formatter && item?.value !== undefined && item.name ? (
-                formatter(item.value, item.name, item, index, item.payload)
+                formatter(item.value, item.name, item, index, item.payload || {})
               ) : (
                 <>
                   {itemConfig?.icon ? (
