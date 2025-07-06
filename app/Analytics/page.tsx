@@ -12,21 +12,14 @@ interface MonthlyExpenseData {
 }
 
 const Analytics = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [monthlyExpenseData, setMonthlyExpenseData] = useState<MonthlyExpenseData[]>([]);
-
-  // Fetch transactions on component mount
-  useEffect(() => {
-    loadTransactions();
-  }, []);
 
   const loadTransactions = async () => {
     try {
       setLoading(true);
       const data = await fetchTransactions();
-      setTransactions(data);
       processData(data);
       setError(null);
     } catch (err) {
@@ -36,6 +29,11 @@ const Analytics = () => {
       setLoading(false);
     }
   };
+
+  // Fetch transactions on component mount
+  useEffect(() => {
+    loadTransactions();
+  }, []);
 
   const processData = (data: Transaction[]) => {
     // Group transactions by month with separate income and expense tracking
@@ -82,7 +80,11 @@ const Analytics = () => {
     }).format(amount);
   };
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: {
+    active?: boolean;
+    payload?: Array<{ payload: MonthlyExpenseData }>;
+    label?: string;
+  }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       const isPositive = data.netAmount >= 0;
