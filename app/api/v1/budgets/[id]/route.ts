@@ -4,11 +4,12 @@ import Budget from '@/lib/models/Budget';
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await connectDB();
-        const budget = await Budget.findByIdAndDelete(params.id);
+        const resolvedParams = await params;
+        const budget = await Budget.findByIdAndDelete(resolvedParams.id);
 
         if (!budget) {
             return NextResponse.json(
