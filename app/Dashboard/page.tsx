@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Transaction, fetchTransactions } from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +14,6 @@ interface CategorySummary {
 }
 
 const Dashboard = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [summary, setSummary] = useState({
@@ -26,15 +25,10 @@ const Dashboard = () => {
   const [categoryBreakdown, setCategoryBreakdown] = useState<CategorySummary[]>([]);
   const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
 
-  useEffect(() => {
-    loadTransactions();
-  }, []);
-
-  const loadTransactions = async () => {
+  const loadTransactions = useCallback(async () => {
     try {
       setLoading(true);
       const data = await fetchTransactions();
-      setTransactions(data);
       processData(data);
       setError(null);
     } catch (err) {
@@ -43,7 +37,11 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadTransactions();
+  }, [loadTransactions]);
 
   const processData = (data: Transaction[]) => {
     let totalIncome = 0;

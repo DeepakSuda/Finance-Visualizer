@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { AlertCircle, TrendingUp, TrendingDown, DollarSign, Target, AlertTriangle } from 'lucide-react';
+import { TrendingUp, TrendingDown, DollarSign, Target, AlertTriangle } from 'lucide-react';
 
 interface Budget {
   _id: string;
@@ -60,12 +60,7 @@ const Budget = () => {
   const [newBudget, setNewBudget] = useState({ category: '', amount: '' });
   const [editingBudget, setEditingBudget] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchBudgets();
-    fetchComparison();
-  }, [selectedMonth]);
-
-  const fetchBudgets = async () => {
+  const fetchBudgets = useCallback(async () => {
     try {
       const response = await fetch(`/api/v1/budgets?month=${selectedMonth}`);
       const data = await response.json();
@@ -73,9 +68,9 @@ const Budget = () => {
     } catch (error) {
       console.error('Error fetching budgets:', error);
     }
-  };
+  }, [selectedMonth]);
 
-  const fetchComparison = async () => {
+  const fetchComparison = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/v1/budgets/comparison?month=${selectedMonth}`);
@@ -87,7 +82,12 @@ const Budget = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedMonth]);
+
+  useEffect(() => {
+    fetchBudgets();
+    fetchComparison();
+  }, [fetchBudgets, fetchComparison]);
 
   const handleSaveBudget = async () => {
     if (!newBudget.category || !newBudget.amount) return;
