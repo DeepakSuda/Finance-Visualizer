@@ -6,9 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2, Calendar, DollarSign, FileText, CreditCard, ShoppingCart } from "lucide-react";
+import { Plus, Edit, Trash2, Calendar, FileText, CreditCard, ShoppingCart } from "lucide-react";
 import { Transaction, fetchTransactions, createTransaction, updateTransaction, deleteTransaction } from "@/lib/api";
 
 const Transactions = () => {
