@@ -31,7 +31,7 @@ const Transactions = () => {
   const [amountInput, setAmountInput] = useState('');
   const [amountError, setAmountError] = useState('');
 
-  // Fetch transactions on component mount
+
   useEffect(() => {
     loadTransactions();
   }, []);
@@ -73,10 +73,8 @@ const Transactions = () => {
   const handleAddTransaction = async () => {
     const amount = parseFloat(amountInput);
 
-    // Clear previous errors
     setAmountError('');
 
-    // Validate amount
     if (!amountInput.trim()) {
       setAmountError('Amount is required');
       return;
@@ -116,10 +114,8 @@ const Transactions = () => {
   const handleEditTransaction = async () => {
     const amount = parseFloat(editAmountInput);
 
-    // Clear previous errors
     setEditAmountError('');
 
-    // Validate amount
     if (!editAmountInput.trim()) {
       setEditAmountError('Amount is required');
       return;
@@ -246,7 +242,7 @@ const Transactions = () => {
                   value={amountInput}
                   onChange={(e) => {
                     setAmountInput(e.target.value);
-                    setAmountError(''); // Clear error when user types
+                    setAmountError('');
                   }}
                   className={amountError ? 'border-red-500' : ''}
                 />
@@ -297,7 +293,7 @@ const Transactions = () => {
         </Dialog>
       </div>
 
-      {/* Transactions List */}
+
       <div className="bg-white rounded-lg shadow">
         {loading && <div className="text-center py-8">Loading transactions...</div>}
         {error && <div className="text-center py-8 text-red-600">{error}</div>}
@@ -377,7 +373,7 @@ const Transactions = () => {
         )}
       </div>
 
-      {/* Edit Transaction Dialog */}
+
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -425,7 +421,7 @@ const Transactions = () => {
                   value={editAmountInput}
                   onChange={(e) => {
                     setEditAmountInput(e.target.value);
-                    setEditAmountError(''); // Clear error when user types
+                    setEditAmountError('');
                   }}
                   className={editAmountError ? 'border-red-500' : ''}
                 />

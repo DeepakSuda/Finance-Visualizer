@@ -9,7 +9,6 @@ Finance Visualizer is a modern web app to help you track your income and expense
 - Add, edit, and delete transactions
 - Categorize your spending and income
 - See monthly net amounts (income minus expenses) in a beautiful bar chart
-- Responsive design for desktop and mobile
 - Data is stored in MongoDB for persistence
 
 ## Getting Started

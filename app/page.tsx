@@ -23,7 +23,7 @@ const Home = () => {
           Track your expenses, analyze spending patterns, and manage your budget with powerful visualizations.
         </p>
 
-        {/* Action Buttons */}
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <Input
             type="text"
